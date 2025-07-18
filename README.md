@@ -12,6 +12,28 @@ The model is built with a U-Net architecture incorporating ResNet blocks, positi
 -   **Forward & Reverse Diffusion:** Complete pipeline for both noising (training) and denoising (sampling).
 -   **Training & Inference:** Scripts for training the model on a custom dataset and generating new images from a trained checkpoint.
 
+## Code Structure
+
+The main logic is contained within `diffusion_model.py`. The script is organized into the following sections:
+
+-   **`TrainingConfig`:** A dataclass holding all hyperparameters for training, data paths, and model saving.
+-   **Data Loading:**
+    -   `TrainDataset`: A custom PyTorch `Dataset` class to load images from a specified folder.
+    -   `get_loader`: A function that sets up the data transformations and returns a `DataLoader`.
+-   **UNet Model Components:**
+    -   `TransformerPositionalEmbedding`: Creates sinusoidal embeddings for the diffusion timesteps.
+    -   `ConvBlock`, `DownsampleBlock`, `UpsampleBlock`: Basic building blocks for the U-Net.
+    -   `ResNetBlock`: A residual block that incorporates timestep embeddings.
+    -   `SelfAttentionBlock`: A self-attention mechanism for capturing global image features.
+    -   `ConvDownBlock`, `ConvUpBlock`, `AttentionDownBlock`, `AttentionUpBlock`: Higher-level blocks that combine ResNet and Attention layers for the U-Net's encoder and decoder paths.
+-   **`UNet` Class:** The complete U-Net model architecture that assembles all the components.
+-   **`DDPMPipeline` Class:**
+    -   `forward_diffusion`: Implements the forward noising process.
+    -   `sampling`: Implements the reverse denoising process (image generation).
+-   **Utility Functions:** Helper functions for post-processing images (`postprocess`), creating image grids (`create_images_grid`), and generating animations (`create_sampling_animation`).
+-   **`train()` function:** The main training loop that handles optimization, loss calculation, and saving checkpoints.
+-   **`run_inference()` function:** A function to load a trained model and generate sample images.
+
 ## How to Use
 
 ### 1. Installation
@@ -61,4 +83,3 @@ A grid of generated images will be displayed and saved in the `models/inference_
 -   Matplotlib
 -   Pillow
 -   tqdm
-
