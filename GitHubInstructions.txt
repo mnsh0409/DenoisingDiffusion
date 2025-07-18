@@ -1,0 +1,44 @@
+## How to Create Your GitHub Repository
+
+1.  **Go to GitHub and create a new repository.**
+    * Click the "+" icon in the top-right corner and select "New repository".
+    * Give it a name (e.g., `diffusion-model`).
+    * You can add a description if you like.
+    * Choose "Public" or "Private".
+    * **Do not** initialize with a README, .gitignore, or license.
+
+2.  **On your local machine, create a new folder for your project and navigate into it.**
+    ```bash
+    mkdir diffusion-model
+    cd diffusion-model
+    ```
+
+3.  **Save all the files I've provided** (`config.py`, `dataset.py`, `model.py`, `pipeline.py`, `utils.py`, `train.py`, `inference.py`, `requirements.txt`, and `README.md`) inside this new folder.
+
+4.  **Initialize a Git repository.**
+    ```bash
+    git init
+    ```
+
+5.  **Add all the files to the repository.**
+    ```bash
+    git add .
+    ```
+
+6.  **Make your first commit.**
+    ```bash
+    git commit -m "Initial commit"
+    ```
+
+7.  **Link your local repository to the one you created on GitHub.** (Replace `<your-username>` and `<your-repository-name>` with your actual GitHub username and repository name).
+    ```bash
+    git remote add origin [https://github.com/](https://github.com/)<your-username>/<your-repository-name>.git
+    ```
+
+8.  **Push your code to GitHub.**
+    ```bash
+    git push -u origin master
+    ```
+
+And that's it! Your code will be on GitHub.
+
